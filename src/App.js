@@ -19,7 +19,7 @@ function App() {
   }, []);
 
   const getFakeData = () => {
-    axios.get(`{API_HOST}/todos/1`)
+    axios.get(`${API_HOST}/todos/1`)
       .then((response) => {
         setTimeout(() => {
           setData(JSON.stringify(response.data, null, 2));
@@ -30,7 +30,7 @@ function App() {
   };
 
   const getOneTodo = (todoId) => new Promise((resolve, reject) => {
-    axios.get(`{API_HOST}/todos/${todoId}`)
+    axios.get(`${API_HOST}/todos/${todoId}`)
       .then((response) => {
         resolve(response.data);
       }).catch(err => {

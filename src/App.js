@@ -18,17 +18,6 @@ function App() {
     };
   }, []);
 
-  const getFakeData = () => {
-    axios.get(`${API_HOST}/todos/1`)
-      .then((response) => {
-        setTimeout(() => {
-          setData(JSON.stringify(response.data, null, 2));
-        }, 5000);
-      }).catch(err => {
-        alert(err);
-      });
-  };
-
   const getOneTodo = (todoId) => new Promise((resolve, reject) => {
     axios.get(`${API_HOST}/todos/${todoId}`)
       .then((response) => {
@@ -37,6 +26,15 @@ function App() {
         reject(err);
       });
   });
+
+  const getFakeData = () => {
+    getOneTodo(1).then((result) => {
+      setTimeout(() => {
+        setData(JSON.stringify(result, null, 2));
+      }, 5000);
+
+    });
+  };
 
   const getFakePackageData = () => {
     const todosActions = [];
